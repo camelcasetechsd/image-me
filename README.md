@@ -27,10 +27,10 @@ Training project for Hybrid Mobile App
 
 * Static templates showing each of the pages created and ready to use:
 
-  1. https://raw.githubusercontent.com/camelcasetechsd/image-me/master/static/1-login.html
-  2. https://raw.githubusercontent.com/camelcasetechsd/image-me/master/static/2-listing.html
-  3. https://raw.githubusercontent.com/camelcasetechsd/image-me/master/static/3-upload.html
-  4. https://raw.githubusercontent.com/camelcasetechsd/image-me/master/static/4-view.html
+  1. http://rawgit.com/camelcasetechsd/image-me/master/static/1-login.html
+  2. http://rawgit.com/camelcasetechsd/image-me/master/static/2-listing.html
+  3. http://rawgit.com/camelcasetechsd/image-me/master/static/3-upload.html
+  4. http://rawgit.com/camelcasetechsd/image-me/master/static/4-view.html
 
 * The intention is for the basic app to be small enough to have an MVP within 1 week.
 
