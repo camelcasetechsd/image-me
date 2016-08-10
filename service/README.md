@@ -9,7 +9,8 @@ This service is a proof-of-concept only. The focus of this application are the A
 The root directory must be writable by PHP, to allow the SQLite file to be created the first time the script runs.
 
 To run this service use:
-  php -S localhost:8000 index.php
+    composer install
+    php -S localhost:8000 index.php
 
 Then access the image listing at:
 http://localhost:8000/images
