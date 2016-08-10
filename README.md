@@ -32,6 +32,9 @@ Training project for Hybrid Mobile App
   3. http://rawgit.com/camelcasetechsd/image-me/master/static/3-upload.html
   4. http://rawgit.com/camelcasetechsd/image-me/master/static/4-view.html
 
+* A basic service has also been provided (to allow the Angular+Ionic clients to be focus of this project). The service can be checked here:
+https://github.com/camelcasetechsd/image-me/blob/master/service/README.md
+
 * The intention is for the basic app to be small enough to have an MVP within 1 week.
 
 * Training presentation to be created once the project is complete to share knowledge with the team.
