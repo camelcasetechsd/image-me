@@ -21,7 +21,16 @@ Training project for Hybrid Mobile App
   3. Title
   4. Image (either base64 encoded data or link to path on file system)
 
+* Once user authenticated via Facebook, state should be stored (in localstorage or similar). Login page should be shown when non-authenticated user accesses root URL (or opens app), while listing page should be shown when authenticated user accesses root URL (or opens app).
+
 * Where possible, aim to share code/logic/templates between the JS client and the Android app (part of this project is to understand how much _can_ be shared).
+
+* Static templates showing each of the pages created and ready to use:
+
+  1. https://raw.githubusercontent.com/camelcasetechsd/image-me/master/static/1-login.html
+  2. https://raw.githubusercontent.com/camelcasetechsd/image-me/master/static/2-listing.html
+  3. https://raw.githubusercontent.com/camelcasetechsd/image-me/master/static/3-upload.html
+  4. https://raw.githubusercontent.com/camelcasetechsd/image-me/master/static/4-view.html
 
 * The intention is for the basic app to be small enough to have an MVP within 1 week.
 
