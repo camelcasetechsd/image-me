@@ -1,0 +1,29 @@
+1.  www/index.html  is the entry point of yur app
+	the application searches for <ion-app></ion-app> tags 
+
+
+2.  app dir where we save pre-compiled files which containes 2 dirs & file 
+
+	- themes :  
+
+	- pages  : 
+
+	- app.ts : 
+				- where you till the appilcation the address for his entry point
+					
+				- where the application bootstraps by ionicBootstrap(<Class_name_which_is_The_app_name>)
+				
+				EX:
+					@Component({
+					  templateUrl: 'build/app.html'   # where the application entry point is  ... like telling it where the index.php is 
+					})
+					class MyApp {   # MyApp = app-name
+					  constructor() {
+					  }
+					}
+
+					ionicBootstrap(MyApp)  # bootstraping the application 
+
+													
+
+3.  

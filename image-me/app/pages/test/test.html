@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar dark>
+        <ion-title>Image-me</ion-title>
+    </ion-navbar>
+</ion-header>
+<!-- page container  -->
+<ion-content class="test">
+    <!-- card -->
+    <ion-card>
+        <ion-card-header>
+            Hello User
+        </ion-card-header>
+        <ion-card-content>
+            Here's where the meagic happens
+        </ion-card-content>
+    </ion-card>
+    <form method="POST" enctype="multipart/form-data">
+        <ion-list>
+            <ion-item>
+                <ion-label fixed>Title</ion-label>
+                <ion-input type="text"  name="title" [(ngModel)]="title"></ion-input>
+            </ion-item>
+            <ion-item>
+                <input type="file" name="image" [(ngModel)]="image">
+            </ion-item>
+        </ion-list>
+        <button full (click)="upload()">Upload</button>
+    </form>
+</ion-content>
