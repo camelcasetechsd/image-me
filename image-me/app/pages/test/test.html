@@ -18,10 +18,10 @@
         <ion-list>
             <ion-item>
                 <ion-label fixed>Title</ion-label>
-                <ion-input type="text"  name="title" [(ngModel)]="title"></ion-input>
+                <ion-input type="text" name="title" [(ngModel)]="title"></ion-input>
             </ion-item>
             <ion-item>
-                <input type="file" name="image" [(ngModel)]="image">
+                <input type="file" (change)="fileChangeEvent($event)" />
             </ion-item>
         </ion-list>
         <button full (click)="upload()">Upload</button>

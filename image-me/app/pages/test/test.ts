@@ -10,25 +10,21 @@ import {ImageService} from '../../services/service.ts'
 })
 export class TestPage {
 
-  public image;
+  public image : Array<File>
   public title;
 
-  constructor(private navCtrl: NavController , private service: ImageService) {
-  }
+   constructor(private navCtrl: NavController , private service: ImageService) {
+   	this.image = [];
+   }
 
-  upload(){
-	// 	this.service.upload(this.title , this.image).subscribe(
-    //        data => {
-    //            // data returned
-    //        },
-    //        // on error
-    //        err => console.error(err),
-    //        // on success
-    //        () => console.log('upload completed')
-    //    );
+   upload(){
+		this.service.upload( this.title , this.image);
+	}
 
-	this.service.upload( this.title , this.image);
-  }
+	fileChangeEvent(fileInput: any){
+        this.image = <Array<File>> fileInput.target.files;
+    }
+ 
 
 
 }
