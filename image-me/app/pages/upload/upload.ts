@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {ImageService} from '../../services/service.ts'
+import {HomePage} from '../home/home'
 
 @Component({
   templateUrl: 'build/pages/upload/upload.html',
@@ -18,7 +19,15 @@ export class UploadPage {
    }
 
    upload(){
-		this.service.upload( this.title , this.image);
+		var response = this.service.upload(this.title , this.image);
+    if( typeof response == "undefined"){
+      // TODO: add flash mesage
+      // reditecting to home page
+      //this.navCtrl.push(HomePage);
+    }else {
+      // TODO : adding flash message
+      console.log('Error')
+    }
 	}
 
 	fileChangeEvent(fileInput: any){

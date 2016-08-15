@@ -14,10 +14,12 @@ export class ImageService {
         ]; 
 
         this.makeFileRequest("http://localhost:8000/images", args , file ).then((result) => {
-            console.log(result);
+        	return ;    
         }, (error) => {
             console.error(error);
+            return 1;
         });
+
     }
 
     makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
