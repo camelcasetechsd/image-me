@@ -3,12 +3,12 @@ import {NavController} from 'ionic-angular';
 import {ImageService} from '../../services/service.ts'
 
 @Component({
-  templateUrl: 'build/pages/test/test.html',
+  templateUrl: 'build/pages/upload/upload.html',
   // providers to return instance injectable classe
   providers: [ImageService]     
 
 })
-export class TestPage {
+export class UploadPage {
 
   public image : Array<File>
   public title;

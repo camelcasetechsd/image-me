@@ -38,7 +38,6 @@ export class ImageService {
                 }
             }
             xhr.open("POST", url, true);
-            console.log(formData)
             xhr.send(formData);
         });
     }
