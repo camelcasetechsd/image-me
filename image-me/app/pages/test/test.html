@@ -21,7 +21,7 @@
                 <ion-input type="text" name="title" [(ngModel)]="title"></ion-input>
             </ion-item>
             <ion-item>
-                <input type="file" (change)="fileChangeEvent($event)" />
+                <input type="file" (change)="fileChangeEvent($event)" multiple/>
             </ion-item>
         </ion-list>
         <button full (click)="upload()">Upload</button>

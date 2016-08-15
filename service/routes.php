@@ -52,9 +52,8 @@ $app->get('/images/{id}', function ($request, $response, $args) {
 
 // POST /images (POSTing userId, title & image [as multipart form])
 $app->post('/images', function ($request, $response, $args) {
-
+	var_dump($_REQUEST);
     global $db;
-	echo $_REQUEST ;
     if (empty($_REQUEST['userId'])) { throw new Exception('Field "userId" required!'); }
     if (empty($_REQUEST['title'])) { throw new Exception('Field "title" required!'); }
     if (empty($_FILES['image'])) { throw new Exception('Field "image" required!'); }

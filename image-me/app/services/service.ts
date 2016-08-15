@@ -11,7 +11,6 @@ export class ImageService {
         var args = [
         100,
         title,
-        file
         ]; 
 
         this.makeFileRequest("http://localhost:8000/images", args , file ).then((result) => {
@@ -25,20 +24,21 @@ export class ImageService {
         return new Promise((resolve, reject) => {
             var formData: any = new FormData();
             var xhr = new XMLHttpRequest();
-            for(var i = 0; i < files.length; i++) {
-                formData.append("uploads[]", files[i], files[i].name);
-            }
+            
+            formData.append('userId',params[0]);
+            formData.append('title',params[1]);
+            formData.append('image',files[0])	
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
+                        resolve(JSON.stringify(xhr.response));
                     } else {
                         reject(xhr.response);
                     }
                 }
             }
-            console.log(formData)
             xhr.open("POST", url, true);
+            console.log(formData)
             xhr.send(formData);
         });
     }
