@@ -7,16 +7,20 @@
 </ion-header>
 
 <ion-content padding class="upload">
-	<form [ngFormModel]="uploadForm" (submit)="uploadImage($event)">
-        <ion-label>Title</ion-label>
-        <input type="text" name="title" id="title" ngControl="title">
-
-        <ion-label>Image</ion-label>
-        <input type="file" name="image" id="image" ngControl="image">
-
+	<form [formGroup]="uploadForm" (submit)="uploadImage($event)">
+        <ion-item >
+            <ion-label floating>Title</ion-label>
+            <ion-input type="text" value="" [ngFormControl]="title"></ion-input>         
+        </ion-item>
+        <!-- <div *ngIf="title.hasError('required') && title.touched"
+            class="error-box">* title is required!</div> -->
+        <label floating>Image</label>
+        <input type="file" name="image" [(ngModel)]="image">     
+        <!-- <div *ngIf="image.hasError('required') && image.touched"
+            class="error-box">* image is required!</div> -->
+       
         <div padding>
             <button block type="submit">Submit</button>
         </div>
-    </form>
-
+  </form>
 </ion-content>

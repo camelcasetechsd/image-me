@@ -8,6 +8,11 @@ This service is a proof-of-concept only. The focus of this application are the A
 
 The root directory must be writable by PHP, to allow the SQLite file to be created the first time the script runs.
 
+To install sqlite driver on ubuntu16:
+```
+ sudo apt install php7.0-sqlite3
+```
+
 To run this service use:
 ```
 composer install
