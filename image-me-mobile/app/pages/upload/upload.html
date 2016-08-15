@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Image Upload
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="upload">
+	<form [ngFormModel]="uploadForm" (submit)="uploadImage($event)">
+        <ion-label>Title</ion-label>
+        <input type="text" name="title" id="title" ngControl="title">
+
+        <ion-label>Image</ion-label>
+        <input type="file" name="image" id="image" ngControl="image">
+
+        <div padding>
+            <button block type="submit">Submit</button>
+        </div>
+    </form>
+
+</ion-content>
