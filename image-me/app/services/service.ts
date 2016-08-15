@@ -7,10 +7,14 @@ export class ImageService {
     }
 
     upload(title,file) {
-        console.log(title)
-        console.log(file)
-        
-        this.makeFileRequest("http://localhost:8000/images", [], file ).then((result) => {
+
+        var args = [
+        100,
+        title,
+        file
+        ]; 
+
+        this.makeFileRequest("http://localhost:8000/images", args , file ).then((result) => {
             console.log(result);
         }, (error) => {
             console.error(error);
