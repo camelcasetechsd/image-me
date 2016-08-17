@@ -4,16 +4,11 @@ import {Component ,Pipe ,PipeTransform } from '@angular/core';
 export class DataPipe  implements PipeTransform {
 
   transform(value) : any{
-  	if(typeof value.userId != "unknown"){
-  		 console.log(value)
-   		 let keys = [];
- 	   		for (let key in value) {
-      		//keys.push({ key: key, value: value[key] });
-    		}
-    	return value;
-	  	}
-	  return value;
-  	}
+  	
+   	let keys = [];
+	for (let key in value) {
+		console.log(key.image)
+	}
 
-
+    return keys;
 }

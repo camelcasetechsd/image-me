@@ -27,26 +27,13 @@ export class GalleryPage {
    }
 
   ngOnInit(){
-    //var images = this.loadGallery(global.getUserId());
-    
-    //images.then(value=>{
-      //  this.data = value;
-    //});
-
 
         this.loading = true;
         this.http.request('http://localhost:8000/images?userId='+global.getUserId())
           .subscribe((res: Response) => {
             this.data = res.json();
-            console.log(this.data)
             this.loading = false;
           });
-
-
-
-
-
-  
   }
 
   loadGallery(userId){

@@ -18,11 +18,11 @@
     <br>
     <br>
     <div>
-         <ul class="div_IndxPartition" *ngFor="let Obj of data ">
-            <li>{{obj.id}}</li>
-            <li>{{obj.userId}}</li>
-            <li>{{obj.image}}</li>
-        </ul> 
+        <div *ngIf="loading">loading...</div>
+        <pre *ngIf="!loading">
+            <div *ngFor="#obj of data ">
+            {{obj.image}}
+            </div>
+        </pre>
     </div>
- 
- </ion-content>
+</ion-content>
