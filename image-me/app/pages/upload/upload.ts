@@ -1,47 +1,39 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {FORM_DIRECTIVES, Validators, FormGroup, FormControl} from '@angular/forms';
+import {ImageService} from '../../services/service.ts'
+import {HomePage} from '../home/home'
 
 @Component({
   templateUrl: 'build/pages/upload/upload.html',
-  directives: [FORM_DIRECTIVES],
+  // providers to return instance injectable classe
+  providers: [ImageService]     
+
 })
 export class UploadPage {
-    uploadForm: FormGroup;
-    title: FormControl;
-    image: FormControl;
+
+  public image : Array<File>
+  public title;
+
+   constructor(private navCtrl: NavController , private service: ImageService) {
+   	this.image = [];
+   }
+
+   upload(){
+		var response = this.service.upload(this.title , this.image);
+    if( typeof response == "undefined"){
+      // TODO: add flash mesage
+      // reditecting to home page
+      //this.navCtrl.push(HomePage);
+    }else {
+      // TODO : adding flash message
+      console.log('Error')
+    }
+	}
+
+	fileChangeEvent(fileInput: any){
+        this.image = <Array<File>> fileInput.target.files;
+    }
  
-    constructor(private navController: NavController) {
-      this.uploadForm = new FormGroup({ 
-        title: new FormControl('', Validators.required),
-        image: new FormControl('', Validators.required)
-      });
-  }
-  uploadImage(event) {
-    let titleValue = event.target[0].value;
-    let imageFile = event.target[2].files[0];
-    let path = 'http://localhost:8000/images';
-    let method = 'POST';
-    return new Promise((resolve, reject) => {
-           var formData: any = new FormData();
-           var xhr = new XMLHttpRequest();
-           
-           formData.append('userId',123);
-           formData.append('title',titleValue);
-           formData.append('image',imageFile)   
-   
-           xhr.onreadystatechange = function () {
-               if (xhr.readyState == 4) {
-                   if (xhr.status == 200) {
-                       resolve(JSON.stringify(xhr.response));
-                   } else {
-                       reject(xhr.response);
-                   }
-               }
-           }
-           xhr.open(method, path, true);
-           xhr.send(formData);
-       })
-  }
+
 
 }

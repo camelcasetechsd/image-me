@@ -12,7 +12,10 @@ To install sqlite driver on ubuntu16:
 ```
  sudo apt install php7.0-sqlite3
 ```
-
+TO view records in db 
+```
+sudo apt-get install sqlitebrowser
+```
 To run this service use:
 ```
 composer install

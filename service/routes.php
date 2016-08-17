@@ -1,4 +1,5 @@
 <?php
+
 // GET /images?userId=123
 $app->get('/images', function ($request, $response, $args) {
 
@@ -53,7 +54,6 @@ $app->get('/images/{id}', function ($request, $response, $args) {
 $app->post('/images', function ($request, $response, $args) {
 
     global $db;
-
     if (empty($_REQUEST['userId'])) { throw new Exception('Field "userId" required!'); }
     if (empty($_REQUEST['title'])) { throw new Exception('Field "title" required!'); }
     if (empty($_FILES['image'])) { throw new Exception('Field "image" required!'); }

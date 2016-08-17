@@ -1,26 +1,29 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Image Upload
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar dark>
+        <ion-title>Image-me</ion-title>
+    </ion-navbar>
 </ion-header>
-
-<ion-content padding class="upload">
-	<form [formGroup]="uploadForm" (submit)="uploadImage($event)">
-        <ion-item >
-            <ion-label floating>Title</ion-label>
-            <ion-input type="text" value="" [ngFormControl]="title"></ion-input>         
-        </ion-item>
-        <!-- <div *ngIf="title.hasError('required') && title.touched"
-            class="error-box">* title is required!</div> -->
-        <label floating>Image</label>
-        <input type="file" name="image" [(ngModel)]="image">     
-        <!-- <div *ngIf="image.hasError('required') && image.touched"
-            class="error-box">* image is required!</div> -->
-       
-        <div padding>
-            <button block type="submit">Submit</button>
-        </div>
-  </form>
+<!-- page container  -->
+<ion-content class="test">
+    <!-- card -->
+    <ion-card>
+        <ion-card-header>
+            Hello User
+        </ion-card-header>
+        <ion-card-content>
+            Here's where the meagic happens
+        </ion-card-content>
+    </ion-card>
+    <form method="POST" enctype="multipart/form-data">
+        <ion-list>
+            <ion-item>
+                <ion-label fixed>Title</ion-label>
+                <ion-input type="text" name="title" [(ngModel)]="title"></ion-input>
+            </ion-item>
+            <ion-item>
+                <input type="file" (change)="fileChangeEvent($event)" multiple/>
+            </ion-item>
+        </ion-list>
+        <button full (click)="upload()">Upload</button>
+    </form>
 </ion-content>

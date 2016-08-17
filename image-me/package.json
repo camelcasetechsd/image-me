@@ -28,8 +28,8 @@
     "tslint-ionic-rules": "^0.0.3",
     "run-sequence": "1.1.5"
   },
-  "name": "",
-  "description": ": An Ionic project",
+  "name": "image-me",
+  "description": "image-me: An Ionic project",
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
