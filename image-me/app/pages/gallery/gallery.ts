@@ -4,7 +4,7 @@ import {NavController} from 'ionic-angular';
 import {ImageService} from '../../services/service';
 import {global} from '../../global';
 import {DataPipe} from './datapipe';
-
+import {ImagePage} from '../image/image'
 
 @Component({
   
@@ -24,7 +24,7 @@ export class GalleryPage {
 
 
    constructor(private navCtrl: NavController , private service: ImageService , private http: Http) {
-   }
+  }
 
   ngOnInit(){
 
@@ -39,6 +39,12 @@ export class GalleryPage {
   loadGallery(userId){
       return this.service.getImages(userId);
   }  
+
+  clicked(event){
+    global.setImageId(event.srcElement.getAttribute('id'));
+    this.navCtrl.push(ImagePage);
+ 
+  }
 
 }
 

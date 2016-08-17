@@ -4,16 +4,7 @@
     </ion-navbar>
 </ion-header>
 <!-- page container  -->
-<ion-content class="test">
-    <!-- card -->
-    <ion-card>
-        <ion-card-header>
-            Your Gallery
-        </ion-card-header>
-        <ion-card-content>
-            Here's your bunker
-        </ion-card-content>
-    </ion-card>
+<ion-content>
     <div>
         <div *ngIf="loading">loading...</div>
         <pre *ngIf="!loading">
@@ -23,7 +14,7 @@
                         <ion-col width-33>
                             <ion-card class="img-card">
                                 {{obj.title}}
-                                <img  id="{{obj.id}}" src="data:image/png;base64,{{obj.image}}" (click)=clicked($event)>
+                                <img  id="{{obj.id}}" src="data:image/png;base64,{{obj.image}}">
                                 <ion-card-content>
                                 </ion-card-content>
                             </ion-card>
