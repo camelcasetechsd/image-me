@@ -14,15 +14,23 @@
             Here's your bunker
         </ion-card-content>
     </ion-card>
-    <br>
-    <br>
-    <br>
     <div>
         <div *ngIf="loading">loading...</div>
         <pre *ngIf="!loading">
-            <div *ngFor="#obj of data ">
-            {{obj.image}}
-            </div>
+            <ion-grid>
+                <ion-row>
+                    <div *ngFor="let obj of data">
+                        <ion-col width-33>
+                            <ion-card class="img-card">
+                                {{obj.title}}
+                                <img src="data:image/png;base64,{{obj.image}}">
+                                <ion-card-content>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-col>
+                    </div>
+              </ion-row>
+            </ion-grid>
         </pre>
     </div>
 </ion-content>

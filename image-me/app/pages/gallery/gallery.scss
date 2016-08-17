@@ -1,0 +1,14 @@
+.img-card {
+	width : 200px ;
+	height : 400px ;
+}
+
+ion-card > img {
+	width : 200px;
+	height:	200px;
+}
+
+ion-card > ion-card-content > ion-card-title{
+	margin-bottom : -20px;
+	font-size : 0.5e;	
+}
