@@ -20,6 +20,7 @@ export class UploadPage {
 
    upload(){
 		var response = this.service.upload(this.title , this.image);
+
     if( typeof response == "undefined"){
       // TODO: add flash mesage
       // reditecting to home page
@@ -33,7 +34,4 @@ export class UploadPage {
 	fileChangeEvent(fileInput: any){
         this.image = <Array<File>> fileInput.target.files;
     }
- 
-
-
 }

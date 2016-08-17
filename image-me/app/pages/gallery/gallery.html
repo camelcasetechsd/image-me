@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar dark>
+        <ion-title>Image-me</ion-title>
+    </ion-navbar>
+</ion-header>
+<!-- page container  -->
+<ion-content class="test">
+    <!-- card -->
+    <ion-card>
+        <ion-card-header>
+            Your Gallery
+        </ion-card-header>
+        <ion-card-content>
+            Here's your bunker
+        </ion-card-content>
+    </ion-card>
+    <br>
+    <br>
+    <br>
+    <div>
+         <ul class="div_IndxPartition" *ngFor="let Obj of data ">
+            <li>{{obj.id}}</li>
+            <li>{{obj.userId}}</li>
+            <li>{{obj.image}}</li>
+        </ul> 
+    </div>
+ 
+ </ion-content>

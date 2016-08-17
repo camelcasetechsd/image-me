@@ -3,6 +3,9 @@ import {Http, Headers} from '@angular/http';
 
 @Injectable()
 export class ImageService {  
+
+    public images ;
+
     constructor(private http: Http) {
     }
 
@@ -13,7 +16,7 @@ export class ImageService {
         title,
         ]; 
 
-        this.makeFileRequest("http://localhost:8000/images", args , file ).then((result) => {
+        this.makeFileRequest("http://localhost:8000/images","POST" , args , file ).then((result) => {
         	return ;    
         }, (error) => {
             console.error(error);
@@ -22,24 +25,45 @@ export class ImageService {
 
     }
 
-    makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
+
+
+    getImages(userId){
+        return this.makeFileRequest("http://localhost:8000/images","GET", [userId] , [] ).then(
+            function onFulfilled(response){
+                return response;
+        });
+    }
+
+
+
+    makeFileRequest(url: string , method: string, params: Array<string>, files: Array<File>) {
         return new Promise((resolve, reject) => {
             var formData: any = new FormData();
             var xhr = new XMLHttpRequest();
-            
-            formData.append('userId',params[0]);
-            formData.append('title',params[1]);
-            formData.append('image',files[0])	
+            //console.log(params)
+            //if(typeof params[0] != "number" ){
+            //    console.log('here')
+                formData.append('userId',params[0]);
+            //}
+
+            if(typeof params[1] != "undefined" && params[1] != ""){
+                formData.append('title',params[1]);
+            }
+
+            if(files.length > 0){
+                formData.append('image',files[0])   
+            }            
+    
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
-                        resolve(JSON.stringify(xhr.response));
+                        resolve(JSON.parse(xhr.response));
                     } else {
                         reject(xhr.response);
                     }
                 }
             }
-            xhr.open("POST", url, true);
+            xhr.open(method, url, true);
             xhr.send(formData);
         });
     }
