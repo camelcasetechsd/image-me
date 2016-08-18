@@ -41,4 +41,5 @@ https://github.com/camelcasetechsd/image-me/blob/master/service/README.md
 
 * Documentation:
  * [Server README](/service/README.md)
+ * [Web README](/web/README.md)
  * [Mobile README](/mobile/README.md)
