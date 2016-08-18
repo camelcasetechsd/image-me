@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController , Tabs } from 'ionic-angular';
 import {ImageService} from '../../services/service.ts'
-import {HomePage} from '../home/home'
+import {GalleryPage} from '../gallery/gallery'
 
 @Component({
   templateUrl: 'build/pages/upload/upload.html',
@@ -13,8 +13,9 @@ export class UploadPage {
 
   public image : Array<File>
   public title;
+  public activeTab;
 
-   constructor(private navCtrl: NavController , private service: ImageService) {
+   constructor(private navCtrl: NavController , private service: ImageService , private tab: Tabs) {
    	this.image = [];
    }
 
@@ -22,16 +23,24 @@ export class UploadPage {
 		var response = this.service.upload(this.title , this.image);
 
     if( typeof response == "undefined"){
-      // TODO: add flash mesage
-      // reditecting to home page
-      //this.navCtrl.push(HomePage);
+
+      var tabs: Tabs = this.navCtrl.parent ;
+
+      // selecting active tag to be Gallery tab (NOTE : active index starts from 0  respectively as in tabs.js )
+      tabs.select(2);
+
+      // redirect to Gallery Page 
+      this.navCtrl.push(GalleryPage);
+
     }else {
-      // TODO : adding flash message
       console.log('Error')
     }
 	}
 
 	fileChangeEvent(fileInput: any){
         this.image = <Array<File>> fileInput.target.files;
+        
+        document.getElementsByName('title')[0].value ='';      
+        document.getElementsByName('file')[0].value = ''; 
     }
 }

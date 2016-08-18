@@ -4,16 +4,18 @@ import {AboutPage} from '../about/about';
 import {ContactPage} from '../contact/contact';
 import {UploadPage} from '../upload/upload';
 import {GalleryPage} from '../gallery/gallery';
+
+
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
 })
 export class TabsPage {
 
-  private tab1Root: any;
-  private tab2Root: any;
-  private tab3Root: any;
-  private tab4Root: any;
-  private tab5Root: any;
+  public tab1Root: any;
+  public tab2Root: any;
+  public tab3Root: any;
+  public tab4Root: any;
+  public tab5Root: any;
 
   constructor() {
     // this tells the tabs component which Pages
