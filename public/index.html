@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Image-Me</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://lipis.github.io/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+
+    </head>
+    <body>
+
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Image-Me</a>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li><a onclick="loadPage('#pageContent', 'pages/login.html')" href="javascript:void(0)" onclick="">Home</a></li>
+                    <li><a onclick="loadPage('#pageContent', 'pages/upload.html')" href="javascript:void(0)">Upload</a></li>
+                    <li><a onclick="loadPage('#pageContent', 'pages/listing.html')" href="javascript:void(0)">Gallery</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="pageContent" class="col-sm-6 col-md-offset-3">
+                
+            </div>
+        </div>
+        <script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.js'></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
