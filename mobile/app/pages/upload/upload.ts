@@ -40,7 +40,5 @@ export class UploadPage {
 	fileChangeEvent(fileInput: any){
         this.image = <Array<File>> fileInput.target.files;
         
-        document.getElementsByName('title')[0].value ='';      
-        document.getElementsByName('file')[0].value = ''; 
     }
 }
