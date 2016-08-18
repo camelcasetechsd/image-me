@@ -38,3 +38,7 @@ https://github.com/camelcasetechsd/image-me/blob/master/service/README.md
 * The intention is for the basic app to be small enough to have an MVP within 1 week.
 
 * Training presentation to be created once the project is complete to share knowledge with the team.
+
+* Documentation:
+ * [Server README](/service/README.md)
+ * [Mobile README](/mobile/README.md)
