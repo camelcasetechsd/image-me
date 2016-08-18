@@ -22,7 +22,7 @@ export class ImagePage {
    ngOnInit(){
 
         this.loading = true;
-        this.http.request('http://localhost:8000/images/'+global.getImageId())
+        this.http.request(global.host+'/images/'+global.getImageId())
           .subscribe((res: Response) => {
             this.data = res.json();
             console.log(this.data)

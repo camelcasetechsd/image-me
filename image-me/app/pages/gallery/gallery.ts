@@ -29,22 +29,35 @@ export class GalleryPage {
   ngOnInit(){
 
         this.loading = true;
-        this.http.request('http://localhost:8000/images?userId='+global.getUserId())
+        this.http.request(global.host+'/images?userId='+global.getUserId())
           .subscribe((res: Response) => {
             this.data = res.json();
             this.loading = false;
           });
   }
 
-  loadGallery(userId){
-      return this.service.getImages(userId);
-  }  
+  
 
   clicked(event){
     global.setImageId(event.srcElement.getAttribute('id'));
     this.navCtrl.push(ImagePage);
  
   }
+
+doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    this.ngOnInit();
+    
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
+
+
+
 
 }
 

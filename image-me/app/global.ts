@@ -1,4 +1,5 @@
 export var global = {
+    host : "http://192.168.1.105:8000/",
     userId : 100,
     imageId : 0,
     setUserId : function(val) {

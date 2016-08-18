@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';  
 import {Http, Headers} from '@angular/http';
+import {global} from '../global';
 
 @Injectable()
 export class ImageService {  
@@ -16,7 +17,7 @@ export class ImageService {
         title,
         ]; 
 
-        this.makeFileRequest("http://localhost:8000/images","POST" , args , file ).then((result) => {
+        this.makeFileRequest(global.host+"/images","POST" , args , file ).then((result) => {
         	return ;    
         }, (error) => {
             console.error(error);
@@ -24,16 +25,6 @@ export class ImageService {
         });
 
     }
-
-
-
-    getImages(userId){
-        return this.makeFileRequest("http://localhost:8000/images","GET", [userId] , [] ).then(
-            function onFulfilled(response){
-                return response;
-        });
-    }
-
 
 
     makeFileRequest(url: string , method: string, params: Array<string>, files: Array<File>) {
