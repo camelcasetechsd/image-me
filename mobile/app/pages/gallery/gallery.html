@@ -18,20 +18,14 @@
     <div>
         <div *ngIf="loading">loading...</div>
         <pre *ngIf="!loading">
-            <ion-grid>
-                <ion-row>
-                    <div *ngFor="let obj of data">
-                        <ion-col width-33>
-                            <ion-card class="img-card">
-                                {{obj.title}}
-                                <img  id="{{obj.id}}" src="data:image/png;base64,{{obj.image}}" (click)=clicked($event)>
-                                <ion-card-content>
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                    </div>
-              </ion-row>
-            </ion-grid>
+            <div *ngFor="let obj of data">
+                <ion-card class="img-card">
+                    {{obj.title}}
+                    <img  id="{{obj.id}}" src="data:image/png;base64,{{obj.image}}" (click)=clicked($event)>
+                    <ion-card-content>
+                    </ion-card-content>
+                </ion-card>
+            </div>
         </pre>
     </div>
 </ion-content>
