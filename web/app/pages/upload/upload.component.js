@@ -10,14 +10,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var service_1 = require('../../services/service');
+var router_1 = require('@angular/router');
 var UploadComponent = (function () {
-    function UploadComponent(service) {
+    function UploadComponent(router, service) {
+        this.router = router;
         this.service = service;
+        // Reset the form with a new hero AND restore 'pristine' class state
+        // by toggling 'active' flag which causes the form
+        // to be removed/re-added in a tick via NgIf
+        // TODO: Workaround until NgForm has a reset method (#6822)
+        this.active = true;
         this.image = [];
     }
     UploadComponent.prototype.upload = function () {
+        var _this = this;
         var response = this.service.upload(this.title, this.image);
         if (typeof response == "undefined") {
+            // reset form elements
+            this.title = '';
+            // refresh form
+            this.active = false;
+            setTimeout(function () { return _this.active = true; }, 0);
+            // redirect to gallery
+            this.router.navigate(['/list']);
         }
         else {
             console.log('Error');
@@ -32,7 +47,7 @@ var UploadComponent = (function () {
             // providers to return instance injectable classe
             providers: [service_1.ImageService]
         }), 
-        __metadata('design:paramtypes', [service_1.ImageService])
+        __metadata('design:paramtypes', [router_1.Router, service_1.ImageService])
     ], UploadComponent);
     return UploadComponent;
 }());
