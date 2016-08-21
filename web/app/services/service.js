@@ -15,6 +15,10 @@ var ImageService = (function () {
     function ImageService(http) {
         this.http = http;
     }
+    ImageService.prototype.fetch = function () {
+        return this.http.get(global_1.global.host + '/images?userId=' + global_1.global.getUserId())
+            .map(function (data) { return data.json(); });
+    };
     ImageService.prototype.upload = function (title, file) {
         var args = [
             100,

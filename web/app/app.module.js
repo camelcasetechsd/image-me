@@ -16,6 +16,7 @@ var app_routing_1 = require('./app.routing');
 var app_component_1 = require('./pages/app/app.component');
 var upload_component_1 = require('./pages/upload/upload.component');
 var list_component_1 = require('./pages/list/list.component');
+var page_not_found_component_1 = require('./pages/page-not-found/page-not-found.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,7 +32,8 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 upload_component_1.UploadComponent,
-                list_component_1.ListComponent
+                list_component_1.ListComponent,
+                page_not_found_component_1.PageNotFoundComponent
             ],
             providers: [
                 app_routing_1.appRoutingProviders

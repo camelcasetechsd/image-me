@@ -9,14 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var service_1 = require('../../services/service');
 var ListComponent = (function () {
-    function ListComponent() {
+    function ListComponent(service) {
+        this.service = service;
     }
+    ListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loading = true;
+        this.service.fetch().subscribe(function (data) { _this.loading = false; _this.data = data; });
+    };
     ListComponent = __decorate([
         core_1.Component({
-            templateUrl: '/app/pages/list/list.html'
+            templateUrl: '/app/pages/list/list.html',
+            // providers to return instance injectable classe
+            providers: [service_1.ImageService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [service_1.ImageService])
     ], ListComponent);
     return ListComponent;
 }());

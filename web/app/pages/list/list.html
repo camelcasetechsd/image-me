@@ -1,16 +1,13 @@
-            <h1>My Images</h1>
+<h1>My Images</h1>
 
-            <table class="table">
+<div *ngIf="loading">loading...</div>
+<div *ngIf="!loading">
+    <div *ngFor="let obj of data">
+        <table class="table">
             <tr>
-                <th>Image</th>
+                {{obj.title}}
+                <img  id="{{obj.id}}" src="data:image/png;base64,{{obj.image}}">
             </tr>
-            <tr>
-                <td><a href="#">Image 1</a></td>
-            </tr>
-            <tr>
-                <td><a href="#">Image 2</a></td>
-            </tr>
-            <tr>
-                <td><a href="#">Image 3</a></td>
-            </tr>
-            </table>
+        </table>
+    </div>
+</div>

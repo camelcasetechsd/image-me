@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';  
-import {Http, Headers} from '@angular/http';
+import {Http, Headers, Response} from '@angular/http';
 import {global} from '../global';
 
 @Injectable()
@@ -10,6 +10,11 @@ export class ImageService {
     constructor(private http: Http) {
     }
 
+    fetch() {
+        return this.http.get(global.host+'/images?userId='+global.getUserId())
+              .map(data => data.json()); 
+    }
+    
     upload(title,file) {
 
         var args = [

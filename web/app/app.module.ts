@@ -8,6 +8,7 @@ import { routing,
 import { AppComponent }  from './pages/app/app.component';
 import { UploadComponent }  from './pages/upload/upload.component';
 import { ListComponent }  from './pages/list/list.component';
+import { PageNotFoundComponent }  from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { ListComponent }  from './pages/list/list.component';
   declarations: [
     AppComponent,
     UploadComponent,
-    ListComponent
+    ListComponent,
+    PageNotFoundComponent
   ],
   providers: [
     appRoutingProviders
