@@ -1,13 +1,20 @@
             <h1>Upload Image</h1>
-
-            <form *ngIf="active" method="POST" enctype="multipart/form-data">
+            {{diagnostic}}
+            <form *ngIf="active" method="POST" enctype="multipart/form-data" #imageForm="ngForm">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="My Title" [(ngModel)]="title">
+                    <input type="text" class="form-control" id="title"
+                           required
+                           [(ngModel)]="model.title" name="title"
+                           #title="ngModel" >
+                    <div [hidden]="title.valid || title.pristine" 
+                         class="alert alert-danger">
+                      Title is required
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" id="file" name="file" (change)="fileChangeEvent($event)">
                 </div>
-                <button type="button" (click)="upload()" class="btn btn-primary">Upload</button>
+                <button type="button" [disabled]="!imageForm.form.valid" (click)="upload()" class="btn btn-default">Upload</button>
             </form>

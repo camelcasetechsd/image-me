@@ -1,6 +1,6 @@
 "use strict";
 exports.global = {
-    host: "http://192.168.1.2:8000/",
+    host: "http://192.168.1.3:8000/",
     userId: 100,
     imageId: 0,
     setUserId: function (val) {

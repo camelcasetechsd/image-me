@@ -11,23 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var service_1 = require('../../services/service');
 var router_1 = require('@angular/router');
+var image_1 = require('./image');
 var UploadComponent = (function () {
     function UploadComponent(router, service) {
         this.router = router;
         this.service = service;
+        this.model = new image_1.Image('', '');
         // Reset the form with a new hero AND restore 'pristine' class state
         // by toggling 'active' flag which causes the form
         // to be removed/re-added in a tick via NgIf
         // TODO: Workaround until NgForm has a reset method (#6822)
         this.active = true;
-        this.image = [];
     }
     UploadComponent.prototype.upload = function () {
         var _this = this;
-        var response = this.service.upload(this.title, this.image);
+        var response = this.service.upload(this.model.title, this.model.image);
         if (typeof response == "undefined") {
             // reset form elements
-            this.title = '';
+            this.model.title = '';
             // refresh form
             this.active = false;
             setTimeout(function () { return _this.active = true; }, 0);
@@ -39,8 +40,14 @@ var UploadComponent = (function () {
         }
     };
     UploadComponent.prototype.fileChangeEvent = function (fileInput) {
-        this.image = fileInput.target.files;
+        this.model.image = fileInput.target.files;
     };
+    Object.defineProperty(UploadComponent.prototype, "diagnostic", {
+        // TODO: Remove this when we're done
+        get: function () { return JSON.stringify(this.model); },
+        enumerable: true,
+        configurable: true
+    });
     UploadComponent = __decorate([
         core_1.Component({
             templateUrl: '/app/pages/upload/upload.html',

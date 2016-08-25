@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ImageService} from '../../services/service'
 import { Router } from '@angular/router';
+import { Image }    from './image';
 
 @Component({
   templateUrl: '/app/pages/upload/upload.html',
@@ -9,8 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UploadComponent { 
 
-  public image : Array<File>
-  public title;
+  model = new Image('', '');
   // Reset the form with a new hero AND restore 'pristine' class state
   // by toggling 'active' flag which causes the form
   // to be removed/re-added in a tick via NgIf
@@ -18,15 +18,14 @@ export class UploadComponent {
   public active = true;
       
    constructor(private router: Router, private service: ImageService) {
-   	this.image = [];
    }
 
    upload(){
-    var response = this.service.upload(this.title , this.image);
+    var response = this.service.upload(this.model.title , this.model.image);
 
     if( typeof response == "undefined"){
         // reset form elements
-        this.title = '';
+        this.model.title = '';
         // refresh form
         this.active = false;
         setTimeout(() => this.active = true, 0);
@@ -38,7 +37,10 @@ export class UploadComponent {
    }
 
    fileChangeEvent(fileInput: any){
-        this.image = <Array<File>> fileInput.target.files;
+        this.model.image = <File> fileInput.target.files;
    }
+
+   // TODO: Remove this when we're done
+   get diagnostic() { return JSON.stringify(this.model); }
 
 }
