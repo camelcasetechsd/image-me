@@ -23,7 +23,7 @@ export class UploadPage {
 		var response = this.service.upload(this.title , this.image);
 
     if( typeof response == "undefined"){
-
+      this.title = '';
       var tabs: Tabs = this.navCtrl.parent ;
 
       // selecting active tag to be Gallery tab (NOTE : active index starts from 0  respectively as in tabs.js )
