@@ -10,7 +10,7 @@ import { Image }    from './image';
 })
 export class UploadComponent { 
 
-  model = new Image('', '');
+  model = new Image('');
   // Reset the form with a new hero AND restore 'pristine' class state
   // by toggling 'active' flag which causes the form
   // to be removed/re-added in a tick via NgIf
