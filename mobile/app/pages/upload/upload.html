@@ -18,12 +18,24 @@
         <form [formGroup]="imageForm" (ngSubmit)="onSubmit(imageForm.valid)">
             <ion-item [class.error]="!title.valid && title.touched">
                 <ion-label floating>Title</ion-label>
-                <ion-input type="text" value="" [formControl]="imageForm.controls['title']"></ion-input>
+                <ion-input type="text" value="" (change)="titleChanged($event)" [formControl]="imageForm.controls['title']"></ion-input>
             </ion-item>
-            <!-- in case not disabling submit button  -->
-            <!-- <div *ngIf="title.hasError('required') && title.touched" class="error-box">* title is required!</div>
-            <div *ngIf="title.hasError('minlength') && title.touched" class="error-box">* Minimum title length is 8!</div> -->
-            <button type="submit" class="custom-button" [disabled]="!imageForm.valid" block>Submit</button>
+            <div *ngIf="title.hasError('required') && title.touched"  style="color: #ea6153;" class="error-box">* title is required!</div>
+            <div *ngIf="title.hasError('minlength') && title.touched" style="color: #ea6153;" class="error-box">* Minimum title length is 8!</div>
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <br>
+            <br>
+            <input type="file" name="file" (change)="fileChangeEvent($event)" />
+            <br>
+            <div *ngIf="fileValidationError[0]" style="color: #ea6153;">Image is required </div>
+            <div *ngIf="fileValidationError[1]" style="color: #ea6153;" >Wrong Image Extension is required </div>
+            <br>
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <button type="submit" class="custom-button" [disabled]="!isValid" block>Submit</button>
         </form>
     </ion-list>
 </ion-content>
