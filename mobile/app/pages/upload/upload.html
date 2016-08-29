@@ -14,16 +14,16 @@
             Here's where the magic happens
         </ion-card-content>
     </ion-card>
-    <form method="POST" enctype="multipart/form-data">
-        <ion-list>
-            <ion-item>
+    <ion-list no-lines>
+        <form [formGroup]="imageForm" (ngSubmit)="onSubmit(imageForm.valid)">
+            <ion-item [class.error]="!title.valid && title.touched">
                 <ion-label floating>Title</ion-label>
-                <ion-input type="text" name="title" [(ngModel)]="title"></ion-input>
+                <ion-input type="text" value="" [formControl]="imageForm.controls['title']"></ion-input>
             </ion-item>
-            <ion-item>
-                <input type="file" name="file" (change)="fileChangeEvent($event)" multiple/>
-            </ion-item>
-        </ion-list>
-        <button full (click)="upload()">Upload</button>
-    </form>
+            <!-- in case not disabling submit button  -->
+            <!-- <div *ngIf="title.hasError('required') && title.touched" class="error-box">* title is required!</div>
+            <div *ngIf="title.hasError('minlength') && title.touched" class="error-box">* Minimum title length is 8!</div> -->
+            <button type="submit" class="custom-button" [disabled]="!imageForm.valid" block>Submit</button>
+        </form>
+    </ion-list>
 </ion-content>

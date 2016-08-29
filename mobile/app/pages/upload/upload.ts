@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
+import { FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, Validators, AbstractControl  } from '@angular/forms';
 import {NavController , Tabs } from 'ionic-angular';
-import {ImageService} from '../../services/service.ts'
-import {GalleryPage} from '../gallery/gallery'
+import {ImageService} from '../../services/service.ts';
+import {GalleryPage} from '../gallery/gallery';
 
 @Component({
   templateUrl: 'build/pages/upload/upload.html',
@@ -11,34 +12,26 @@ import {GalleryPage} from '../gallery/gallery'
 })
 export class UploadPage {
 
-  public image : Array<File>
-  public title;
-  public activeTab;
+imageForm: FormGroup;  
+title: AbstractControl;
 
-   constructor(private navCtrl: NavController , private service: ImageService , private tab: Tabs) {
-   	this.image = [];
-   }
 
-   upload(){
-		var response = this.service.upload(this.title , this.image);
 
-    if( typeof response == "undefined"){
-      this.title = '';
-      var tabs: Tabs = this.navCtrl.parent ;
+    constructor(private formBuilder: FormBuilder , private navCtrl: NavController , private service: ImageService , private tab: Tabs) {
+      this.imageForm = formBuilder.group({  
+        'title': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+      });
 
-      // selecting active tag to be Gallery tab (NOTE : active index starts from 0  respectively as in tabs.js )
-      tabs.select(2);
-
-      // redirect to Gallery Page 
-      this.navCtrl.push(GalleryPage);
-
-    }else {
-      console.log('Error')
+      this.title = this.imageForm.controls['title'];     
     }
-	}
 
-	fileChangeEvent(fileInput: any){
-        this.image = <Array<File>> fileInput.target.files;
-        
-    }
+    onSubmit(value: string): void { 
+        if(this.imageForm.valid) {
+            console.log('Submitted value: ', value);
+            console.log(this.title);
+        }
+    }       
+
+
+
 }
