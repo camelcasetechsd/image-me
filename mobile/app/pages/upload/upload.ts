@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, Validators, AbstractControl  } from '@angular/forms';
-import {NavController , Tabs } from 'ionic-angular';
+import {NavController, Tabs, Slides } from 'ionic-angular';
 import {ImageService} from '../../services/service.ts';
 import {FileValidator} from '../../services/fileValidator.ts';
 import {GalleryPage} from '../gallery/gallery';
@@ -12,44 +12,85 @@ import {GalleryPage} from '../gallery/gallery';
 
 })
 export class UploadPage {
+    
+    @ViewChild('imageUploadSlider') imageUploadSlider: Slides;
+    swiper: any;    
+    
+    slideOneForm: FormGroup;
+    slideTwoForm: FormGroup;
 
-imageForm: FormGroup;  
-title: AbstractControl;
-fileValidationError: Array<boolean>;
-image: Array<File>;
-isValid: boolean;
+ 
+    title: AbstractControl;
+    image: Array<File>;
 
-    constructor(private formBuilder: FormBuilder ,private fv: FileValidator ,private navCtrl: NavController , private service: ImageService , private tab: Tabs) {
+    validationMessages: Array<string> = [];
 
-        this.fileValidationError = [false , false];
+    fileChanged: boolean = false;
+
+    constructor(private formBuilder: FormBuilder,private fv: FileValidator ,private navCtrl: NavController , private service: ImageService , private tab: Tabs) {
+ 
+        this.slideOneForm = formBuilder.group({
+            title: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+        });  
+
+        this.title = this.slideOneForm.controls['title'];
+    }
+ 
+ /////////////////////////////////////////////////
+ /////////   SLIDER  Methods  ///////////////////
+    next(){
         
-        this.imageForm = formBuilder.group({  
-          'title': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-        });
-
-        this.title = this.imageForm.controls['title'];     
-    }
-
-    titleChanged(title: string){
-        if(!this.imageForm.valid){
-          this.isValid = false;
+        // locking swiping
+        if(this.swiper){
+           this.swiper.unlockSwipes();
         }
+
+        this.imageUploadSlider.slideNext();
     }
+ 
+    prev(){
+        
+        // locking swiping
+        if(this.swiper){
+            this.swiper.unlockSwipes();
+        }
+
+        this.imageUploadSlider.slidePrev();
+    }
+ 
+    onIonDrag(event){
+      this.swiper = event;
+      this.swiper.lockSwipes();
+    }
+
+//////////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////
+////////// changing events  /////////////////
 
     fileChangeEvent(fileInput: any){
-        this.isValid = false;
+        this.fileChanged = true;
         this.image = <Array<File>> fileInput.target.files;
-        this.fileValidationError = this.fv.validateImageFile(this.image);   
-        if(this.imageForm.valid && !this.fileValidationError[0] && !this.fileValidationError[1]){
-            this.isValid = true;
-        } 
+        this.validationMessages = this.fv.validateImageFile(this.image);         
+        //console.log(this.validationMessages);
     }
 
 
+///////////////////////////////////////////
+// submit validation
+
+    validateForm(): boolean{
+      if( this.validationMessages.length > 0){
+        return false;
+      }
+      return true;
+    }
+
+/////////////////////////////
+
     onSubmit(value: string): void { 
-        console.log(this.isValid);
+
     }       
-
-
-
 }

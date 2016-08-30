@@ -1,59 +1,59 @@
 import {Injectable} from '@angular/core';  
 import {global} from '../global';
+import {Messages} from '../messages';
 
 @Injectable()
 export class FileValidator {  
-
-    fileExistanceValidator: boolean;
-    fileExtensionValidator: boolean;
-    validExtensions: Array<string> ;
     
+    validExtensions: Array<string> = ['jpg', 'gif', 'jpeg'];
+    validationMessages: Array<string> = [];
 
     constructor() {
-        
-        this.validExtensions = ['jpg', 'gif', 'jpeg'];
-        
-        this.fileExistanceValidator = false;
-        this.fileExtensionValidator = true;
-
     }
 
-    validateImageFile(image): Array<boolean> {
+    validateImageFile(image): Array<string> {
+        this.validationMessages = [];
 
+        
         // validate image existance 
-        this.fileExistanceValidator = this.validateImageExistance(image);
-
-
-        // validating image extension
-        if(!this.fileExistanceValidator){
-            this.fileExtensionValidator = this.validateImageExtension(image);  
+        let message = this.validateImageExistance(image);
+        if(message != null){
+            this.validationMessages.push(message);
         }
-        
-        
-        return [
-        this.fileExistanceValidator,
-        this.fileExtensionValidator,
-        ];
+
+            
+        // validating image extension if existed
+        if(this.validationMessages.length < 1){
+            message = this.validateImageExtension(image);
+            if(message != null){
+                this.validationMessages.push(message);
+            }  
+        }
+
+        return this.validationMessages ;
     }
 
-    validateImageExistance(image): boolean{
+    validateImageExistance(image): any{
         if(image.length == 0){
-            return true;
+            return Messages.FILE_REQUIRED()
         }
-        return false;
-
     }
 
-    validateImageExtension(image): boolean{
+    validateImageExtension(image): any{
         let targetImage = image[0]
+        let counter = 0;
         for(let i = 0 ; i < this.validExtensions.length ; i++){
-            if(targetImage.type === 'image/'+this.validExtensions[i]){
-                return false;
+            if(targetImage.type != 'image/'+this.validExtensions[i]){
+                counter++;
             }
         }
-        return true;
-    }
 
+        // extension is not valid 
+        if(this.validExtensions.length === counter){
+            return Messages.WRONG_EXTENSION();
+        }
+        //file extension is valid
+    }
 }
 
 
