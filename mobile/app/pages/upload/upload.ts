@@ -87,7 +87,7 @@ export class UploadPage {
 ////////////////////////////////////////////
 /////////  Submition ///////////////////////
     onSubmit(){ 
-      var response = this.service.upload(this.title , this.image);
+      var response = this.service.upload(this.title.value , this.image);
 
       if( typeof response == "undefined"){
 

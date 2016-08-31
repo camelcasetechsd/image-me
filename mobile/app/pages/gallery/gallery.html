@@ -20,7 +20,10 @@
             <ion-grid>
                 <ion-row *ngFor="let row of data | threePerRow">
                     <ion-col width-33 *ngFor="let img of row">
-                        <img  id="{{img.id}}" src="data:image/png;base64,{{img.image}}" height="250px" (click)=clicked($event)>
+                        <div class="image-title">
+                            <p>{{img.title}}<p>
+                        </div>
+                        <img  id="{{img.id}}" class="" src="data:image/png;base64,{{img.image}}" width="100%" height="250px" (click)=clicked($event)>
                     </ion-col>
                 </ion-row>
             </ion-grid>
