@@ -3,27 +3,44 @@
         <ion-title>Image-me</ion-title>
     </ion-navbar>
 </ion-header>
-<!-- page container  -->
-<ion-content class="test">
-    <!-- card -->
-    <ion-card>
-        <ion-card-header>
-            Hello User
-        </ion-card-header>
-        <ion-card-content>
-            Here's where the magic happens
-        </ion-card-content>
-    </ion-card>
-    <form method="POST" enctype="multipart/form-data">
-        <ion-list>
-            <ion-item>
-                <ion-label floating>Title</ion-label>
-                <ion-input type="text" name="title" [(ngModel)]="title"></ion-input>
-            </ion-item>
-            <ion-item>
-                <input type="file" name="file" (change)="fileChangeEvent($event)" multiple/>
-            </ion-item>
-        </ion-list>
-        <button full (click)="upload()">Upload</button>
-    </form>
+<ion-content>
+    <ion-nav-bar primary>
+        <center>
+            <ion-title>
+                New Image
+            </ion-title>
+            <ion-buttons>
+                <button (click)="prev()">
+                    <ion-icon name="arrow-back"></ion-icon> Prev</button>
+                <button [disabled]="!slideOneForm.valid" (click)="next()">Next
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+            </ion-buttons>
+        </center>
+    </ion-nav-bar>
+    <div class="slides-container">
+        <!-- page container  -->
+        <ion-slides #imageUploadSlider pager (ionDrag)="onIonDrag($event)" [options]="slidesOptions">
+            <ion-slide>
+                <form [formGroup]="slideOneForm">
+                    <ion-item [class.error]="!title.valid && title.touched">
+                        <ion-label floating>Title</ion-label>
+                        <ion-input type="text" value="" [formControl]="slideOneForm.controls['title']"></ion-input>
+                    </ion-item>
+                    <div *ngIf="title.hasError('required') && title.touched" style="color: #ea6153;" class="error-box">* title is required!</div>
+                    <div *ngIf="title.hasError('minlength') && title.touched" style="color: #ea6153;" class="error-box">* Minimum title length is 8!</div>
+                </form>
+            </ion-slide>
+            <ion-slide>
+                <br>
+                <input type="file" name="file" (change)="fileChangeEvent($event)" />
+                <br>
+                <div *ngFor="let message of validationMessages">
+                    <p style="color: #ea6153;">{{message}}</p>
+                </div>
+                <br>
+                <button primary (click)="onSubmit()" [disabled]="(!fileChanged || !validateForm())">Upload Image</button>
+            </ion-slide>
+        </ion-slides>
+    </div>
 </ion-content>
