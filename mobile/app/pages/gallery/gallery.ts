@@ -1,6 +1,6 @@
 import {Component , OnInit ,Pipe ,PipeTransform } from '@angular/core';
 import {Http, Response} from '@angular/http';
-import {NavController} from 'ionic-angular';
+import {NavController, LoadingController} from 'ionic-angular';
 import {ImageService} from '../../services/service';
 import {global} from '../../global';
 import {DataPipe} from './datapipe';
@@ -23,29 +23,22 @@ export class GalleryPage {
   loading: boolean;
 
 
-   constructor(private navCtrl: NavController , private service: ImageService , private http: Http) {
+   constructor(private navCtrl: NavController , private service: ImageService , private http: Http , private loadingCtrl: LoadingController) {
   }
 
   ngOnInit(){
-
-        this.loading = true;
-        this.http.request(global.host+'/images?userId='+global.getUserId())
-          .subscribe((res: Response) => {
-            this.data = res.json();
-            this.loading = false;
-          });
+    this.presentLoading();
   }
 
   
 
   clicked(event){
+
     global.setImageId(event.srcElement.getAttribute('id'));
     this.navCtrl.push(ImagePage);
- 
   }
 
-doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
+  doRefresh(refresher) {
 
     this.ngOnInit();
     
@@ -55,9 +48,21 @@ doRefresh(refresher) {
     }, 2000);
   }
 
+  presentLoading() {
 
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 1500
+    });
+        
+    loader.present();
 
-
-
+    this.loading = true;
+        this.http.request(global.host+'/images?userId='+global.getUserId())
+          .subscribe((res: Response) => {
+            this.data = res.json();
+            this.loading = false;
+          });
+  }
 }
 

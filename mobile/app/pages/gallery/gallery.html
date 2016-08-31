@@ -16,7 +16,6 @@
         </ion-card-content>
     </ion-card>
     <div>
-        <div *ngIf="loading">loading...</div>
         <pre *ngIf="!loading">
             <ion-grid>
                 <ion-row *ngFor="let row of data | threePerRow">
