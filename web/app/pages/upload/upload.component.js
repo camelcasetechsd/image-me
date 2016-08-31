@@ -16,7 +16,7 @@ var UploadComponent = (function () {
     function UploadComponent(router, service) {
         this.router = router;
         this.service = service;
-        this.model = new image_1.Image('', '');
+        this.model = new image_1.Image('');
         // Reset the form with a new hero AND restore 'pristine' class state
         // by toggling 'active' flag which causes the form
         // to be removed/re-added in a tick via NgIf
