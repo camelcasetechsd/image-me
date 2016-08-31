@@ -28,17 +28,26 @@ export class GalleryPage {
 
   ngOnInit(){
     this.presentLoading();
-  }
 
-  
+    this.loading = true;
+      this.http.request(global.host+'/images?userId='+global.getUserId())
+        .subscribe((res: Response) => {
+          this.data = res.json();
+          this.loading = false;
+        });
+
+    this.presentLoading();
+
+  }
 
   clicked(event){
-
     global.setImageId(event.srcElement.getAttribute('id'));
     this.navCtrl.push(ImagePage);
+ 
   }
 
-  doRefresh(refresher) {
+doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
 
     this.ngOnInit();
     
@@ -48,21 +57,18 @@ export class GalleryPage {
     }, 2000);
   }
 
-  presentLoading() {
+presentLoading() {
 
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 1500
+      duration: 1000
     });
-        
-    loader.present();
 
-    this.loading = true;
-        this.http.request(global.host+'/images?userId='+global.getUserId())
-          .subscribe((res: Response) => {
-            this.data = res.json();
-            this.loading = false;
-          });
+    loader.present();
   }
+
+
+
+
 }
 

@@ -70,7 +70,6 @@ export class UploadPage {
         this.fileChanged = true;
         this.image = <Array<File>> fileInput.target.files;
         this.validationMessages = this.fv.validateImageFile(this.image);         
-        //console.log(this.validationMessages);
     }
 
 
@@ -87,21 +86,18 @@ export class UploadPage {
 ////////////////////////////////////////////
 /////////  Submition ///////////////////////
     onSubmit(){ 
+
       var response = this.service.upload(this.title.value , this.image);
-
       if( typeof response == "undefined"){
-
           var tabs: Tabs = this.navCtrl.parent ;
-
           // selecting active tag to be Gallery tab (NOTE : active index starts from 0  respectively as in tabs.js )
           tabs.select(2);
-
           // redirect to Gallery Page 
           this.navCtrl.push(GalleryPage);
-
-      }else {
-            console.log('Error')
+      }else{
+          console.log('Error')
       }
+      
     }
 }       
 
