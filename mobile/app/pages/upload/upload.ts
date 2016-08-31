@@ -64,10 +64,6 @@ export class UploadPage {
     }
 
 //////////////////////////////////////////////
-
-
-
-/////////////////////////////////////////////
 ////////// changing events  /////////////////
 
     fileChangeEvent(fileInput: any){
@@ -79,7 +75,7 @@ export class UploadPage {
 
 
 ///////////////////////////////////////////
-// submit validation
+///////// submit validation  /////////////
 
     validateForm(): boolean{
       if( this.validationMessages.length > 0){
@@ -88,9 +84,26 @@ export class UploadPage {
       return true;
     }
 
-/////////////////////////////
+////////////////////////////////////////////
+/////////  Submition ///////////////////////
+    onSubmit(){ 
+      var response = this.service.upload(this.title , this.image);
 
-    onSubmit(value: string): void { 
+      if( typeof response == "undefined"){
 
-    }       
-}
+          var tabs: Tabs = this.navCtrl.parent ;
+
+          // selecting active tag to be Gallery tab (NOTE : active index starts from 0  respectively as in tabs.js )
+          tabs.select(2);
+
+          // redirect to Gallery Page 
+          this.navCtrl.push(GalleryPage);
+
+      }else {
+            console.log('Error')
+      }
+    }
+}       
+
+
+////////////////////////////////////////////

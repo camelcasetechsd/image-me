@@ -39,7 +39,7 @@
                     <p style="color: #ea6153;">{{message}}</p>
                 </div>
                 <br>
-                <button primary (click)="save()" [disabled]="(!fileChanged || !validateForm())">Upload Image</button>
+                <button primary (click)="onSubmit()" [disabled]="(!fileChanged || !validateForm())">Upload Image</button>
             </ion-slide>
         </ion-slides>
     </div>
