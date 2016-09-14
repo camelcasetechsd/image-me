@@ -22,13 +22,12 @@ export class GalleryPage {
   public data ;
   loading: boolean;
 
+  constructor(private navCtrl: NavController , private service: ImageService , private http: Http , private loadingCtrl: LoadingController) {
 
-   constructor(private navCtrl: NavController , private service: ImageService , private http: Http , private loadingCtrl: LoadingController) {
   }
 
   ngOnInit(){
-    this.presentLoading();
-
+    
     this.loading = true;
       this.http.request(global.host+'/images?userId='+global.getUserId())
         .subscribe((res: Response) => {
@@ -46,18 +45,17 @@ export class GalleryPage {
  
   }
 
-doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
+  doRefresh(refresher) {
 
-    this.ngOnInit();
-    
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
+      this.ngOnInit();
+      
+      setTimeout(() => {
+        console.log('Async operation has ended');
+        refresher.complete();
+      }, 2000);
   }
 
-presentLoading() {
+  presentLoading() {
 
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
