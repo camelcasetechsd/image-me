@@ -2,7 +2,8 @@ import { Facebook } from 'ionic-native';
 import {Injectable} from '@angular/core';  
 import { Storage, SqlStorage } from 'ionic-angular';
 
-
+import { App } from 'ionic-angular';
+import {LoginPage} from '../pages/login/login'
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,7 @@ export class AuthService {
 	userId: any;
 
 
-	constructor(private fb: Facebook){
+	constructor(private fb: Facebook, private app: App){
 		this.storage = new Storage(SqlStorage);
 		this.getUserName();
 		this.getUserId();
@@ -29,6 +30,10 @@ export class AuthService {
 		this.storage.remove('name');			
 		this.storage.remove('userId');
 		alert('You will be missed !');
+
+		// to force login page without tabs-bar 
+		this.app.getRootNav().setRoot(LoginPage);
+
 	}
 
 	// to check if user is authenticated or not
