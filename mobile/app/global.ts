@@ -43,10 +43,8 @@ export var global = {
 
     setFacebookAccessToken : function(tokenJson){
         this.facebookToken = tokenJson.access_token;
-        this.updateExpirationDate = tokenJson.expires_in;
         this.updateLastLogin();
         this.updateExpirationDate(tokenJson.expires_in);
-        console.log('hay')
     },
 
     updateLastLogin(){
@@ -55,7 +53,7 @@ export var global = {
 
     updateExpirationDate(expires_in){
         let timeObj = new Date();
-        this.tokenExpirationDate = new Date( timeObj.getTime() + expires_in ); 
+        this.tokenExpirationDate = new Date( 1000 * expires_in ); 
     }
 
 

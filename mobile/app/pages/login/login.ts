@@ -22,7 +22,7 @@ export class LoginPage {
 
 
 public facebookToken 
-public tokenCreationDate
+public tokenCreationDate 
 public tokenExpirationDate
 public userId
 public userName
@@ -52,7 +52,7 @@ public userName
                     global.setUserName(res.name);
 
                     this.facebookToken = global.facebookToken
-                    this.tokenCreationDate = global.tokenCreationDate 
+                    this.tokenCreationDate = global.tokenCreationDate
                     this.tokenExpirationDate = global.tokenExpirationDate
                     this.userId =  global.userId
                     this.userName = global.userName
