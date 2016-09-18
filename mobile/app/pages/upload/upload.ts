@@ -1,14 +1,15 @@
 import {Component, ViewChild} from '@angular/core';
 import { FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, Validators, AbstractControl  } from '@angular/forms';
 import {NavController, Tabs, Slides } from 'ionic-angular';
-import {ImageService} from '../../services/service.ts';
-import {FileValidator} from '../../services/fileValidator.ts';
+import {ImageService} from '../../services/service';
+import {AuthService} from '../../services/auth';
+import {FileValidator} from '../../services/fileValidator';
 import {GalleryPage} from '../gallery/gallery';
 
 @Component({
   templateUrl: 'build/pages/upload/upload.html',
   // providers to return instance injectable classe
-  providers: [ImageService,FileValidator]     
+  providers: [ImageService,FileValidator,AuthService]     
 
 })
 export class UploadPage {
@@ -27,7 +28,7 @@ export class UploadPage {
 
     fileChanged: boolean = false;
 
-    constructor(private formBuilder: FormBuilder,private fv: FileValidator ,private navCtrl: NavController , private service: ImageService , private tab: Tabs) {
+    constructor(private formBuilder: FormBuilder,private fv: FileValidator ,private navCtrl: NavController , private service: ImageService , private tab: Tabs ,private auth: AuthService) {
  
         this.slideOneForm = formBuilder.group({
             title: ['', Validators.compose([Validators.required, Validators.minLength(8)])],

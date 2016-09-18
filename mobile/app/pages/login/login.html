@@ -1,6 +1,6 @@
 <ion-navbar *navbar>
     <ion-title>
-        Facebook auth demo
+        Facebook auth
     </ion-title>
 </ion-navbar>
 <ion-content class="home">
@@ -11,13 +11,7 @@
             </ion-card-header>
             <ion-card-content>
                 <button (click)="login()" large>login with Facebook</button>
-
-                {{facebookToken}}<br><br><br>
-                {{tokenCreationDate}}<br><br><br>
-                {{tokenExpirationDate}}<br><br><br>
-                {{userId}}<br><br><br>
-                {{userName}}<br><br><br>
-                
+                {{userId}}
             </ion-card-content>
         </ion-card>
     </center>

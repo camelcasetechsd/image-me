@@ -45,9 +45,11 @@ public storage
         this.platform.ready().then(() => {
             this.oauth.logInVia(this.provider).then((tokenJson: any) => {
                 
+                let dummyDate = new Date();
                 // saving login token & expiration date
                 this.storage.set('token',tokenJson.access_token);
-                this.storage.set('expirationDate',new Date( 1000 * tokenJson.expires_in )) 
+                this.storage.set('expirationDate', dummyDate.getTime() + tokenJson.expires_in * 1000 ) 
+
 
                 // getting user data
                 this.http.get("https://graph.facebook.com/v2.0/me?fields=id,name&format=json&access_token="+tokenJson.access_token)
@@ -56,6 +58,10 @@ public storage
                     // saving userId & user name
                     this.storage.set('name',res.name);
                     this.storage.set('userId',res.id);
+
+                    this.storage.get('userId').then((id)=>{
+                        this.userId = id;
+                    });
                 }
                 ,(error : any)=> {
                         alert("There was a problem getting your profile.  Check the logs for details.");
