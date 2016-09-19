@@ -30,7 +30,7 @@ export class GalleryPage {
   ngOnInit(){
     
     this.loading = true;
-      this.http.request(global.host+'/images?userId='+global.getUserId())
+      this.http.request(global.host+'/images?userId='+global.userId)
         .subscribe((res: Response) => {
           this.data = res.json();
           this.loading = false;
@@ -41,7 +41,7 @@ export class GalleryPage {
   }
 
   clicked(event){
-    global.setImageId(event.srcElement.getAttribute('id'));
+    global.imageId = event.srcElement.getAttribute('id');
     this.navCtrl.push(ImagePage);
  
   }

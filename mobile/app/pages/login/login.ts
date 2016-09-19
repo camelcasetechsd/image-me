@@ -5,7 +5,6 @@ import { CordovaOauth, Facebook } from "ng2-cordova-oauth/core";
 import {global} from '../../global';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/Rx';
-import {Helpers} from '../../services/helpers';
 import { Storage, SqlStorage } from 'ionic-angular';
 
 import {TabsPage} from '../tabs/tabs';
@@ -14,7 +13,6 @@ import { App } from 'ionic-angular';
 
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers: [Helpers]
 
   })
 export class LoginPage {
@@ -31,10 +29,10 @@ export class LoginPage {
     public storage
 
 
-    public constructor(public navCtrl: NavController, private platform: Platform, private http: Http, private helpers: Helpers, private app: App) {
+    public constructor(public navCtrl: NavController, private platform: Platform, private http: Http, private app: App) {
         this.oauth = new CordovaOauth();
         this.provider = new Facebook({
-            clientId: global.getFacebookAppId(),
+            clientId: global.facebookAppId,
             appScope: ["public_profile"]
         });
 
