@@ -53,18 +53,6 @@ export class AuthService {
 		});
 	}
 
-	// in case of not authenticated user
-	preAuth(){
-
-	}
-
-	// in case of authenticated user
-	afterAuth(){
-
-	}
-
-
-
 
 
 //////////// helpers ///////////////////////////
