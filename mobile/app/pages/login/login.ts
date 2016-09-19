@@ -60,10 +60,6 @@ export class LoginPage {
                     this.storage.set('name',res.name);
                     this.storage.set('userId',res.id);
 
-                    this.storage.get('userId').then((id)=>{
-                        this.userId = id;
-                    });
-
                     console.log('user has logged in successfully');
                     
 

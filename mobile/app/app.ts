@@ -7,6 +7,7 @@ import { Facebook } from 'ionic-native';
 
 import { App } from 'ionic-angular';
 import { AuthService } from './services/auth';
+import { global } from './global';
 
 @Component({
 template: '<ion-nav [root]="rootPage"></ion-nav>',
@@ -22,7 +23,9 @@ export class MyApp {
   	// check if token still valid or not
   	this.auth.hasLogged().then((status)=>{
   		if(status){
-			this.rootPage = TabsPage;		  	
+  			this.rootPage = TabsPage;
+        this.auth.getUserName();
+        this.auth.getUserId();
   		}else{
     		this.rootPage = LoginPage;
   		}

@@ -25,7 +25,6 @@ export class ImagePage {
         this.http.request(global.host+'/images/'+global.imageId)
           .subscribe((res: Response) => {
             this.data = res.json();
-            console.log(this.data)
             this.loading = false;
           });
   }

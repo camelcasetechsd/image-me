@@ -13,7 +13,7 @@ export class ImageService {
     upload(title,file) {
 
         var args = [
-        100,
+        global.userId,
         title,
         ]; 
 
@@ -31,11 +31,8 @@ export class ImageService {
         return new Promise((resolve, reject) => {
             var formData: any = new FormData();
             var xhr = new XMLHttpRequest();
-            //console.log(params)
-            //if(typeof params[0] != "number" ){
-            //    console.log('here')
-                formData.append('userId',params[0]);
-            //}
+            
+            formData.append('userId',params[0]);
 
             if(typeof params[1] != "undefined" && params[1] != ""){
                 formData.append('title',params[1]);

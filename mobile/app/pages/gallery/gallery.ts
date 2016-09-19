@@ -22,9 +22,9 @@ export class GalleryPage {
 
   public data ;
   loading: boolean;
-
+  userName: string;
   constructor(private navCtrl: NavController , private service: ImageService , private http: Http , private loadingCtrl: LoadingController ,private auth: AuthService) {
-
+    this.userName = global.userName;
   }
 
   ngOnInit(){

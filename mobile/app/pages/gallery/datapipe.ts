@@ -16,7 +16,6 @@ export class DataPipe  implements PipeTransform {
 	   		}	
 	   		container.push(sub);
 	   	}
-	   	console.log(container)
 	    return container;
 	}
 }

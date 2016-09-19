@@ -2,8 +2,8 @@
     <ion-navbar>
         <ion-title>Home</ion-title>
         <ion-buttons end>
-            <button id="logout-button" *ngIf="hasLogged" (click)="auth.logout()">
-                <span class="username">{{auth.userName}}</span>
+            <button id="logout-button" *ngIf="userName" (click)="auth.logout()">
+                <span class="username">{{userName}}</span>
                 <ion-icon name="log-out"></ion-icon>
             </button>
         </ion-buttons>

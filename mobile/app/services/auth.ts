@@ -4,6 +4,7 @@ import { Storage, SqlStorage } from 'ionic-angular';
 
 import { App } from 'ionic-angular';
 import {LoginPage} from '../pages/login/login'
+import {global} from '../global';
 
 @Injectable()
 export class AuthService {
@@ -59,13 +60,13 @@ export class AuthService {
 
 	getUserName(){
 		this.storage.get('name').then((name)=>{
-			this.userName =  name;
+			global.userName =  name;
 		});
 	}
 
 	getUserId(){
 		this.storage.get('userId').then((userId)=>{
-			this.userId =  userId;
+			global.userId =  userId;
 		});
 	}
 
