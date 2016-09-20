@@ -23,22 +23,16 @@ export class GalleryPage {
   public data ;
   loading: boolean;
   userName: string;
+
+
   constructor(private navCtrl: NavController , private service: ImageService , private http: Http , private loadingCtrl: LoadingController ,private auth: AuthService) {
     this.userName = global.userName;
   }
 
-  ngOnInit(){
-    
-    this.loading = true;
-      this.http.request(global.host+'/images?userId='+global.userId)
-        .subscribe((res: Response) => {
-          this.data = res.json();
-          this.loading = false;
-        });
-
-    this.presentLoading();
-
+  ionViewLoaded() { // THERE IT IS!!!
+      this.presentLoading();
   }
+
 
   clicked(event){
     global.imageId = event.srcElement.getAttribute('id');
@@ -48,15 +42,23 @@ export class GalleryPage {
 
   doRefresh(refresher) {
 
-      this.ngOnInit();
-      
+
       setTimeout(() => {
+        this.presentLoading();
         console.log('Async operation has ended');
         refresher.complete();
+
       }, 2000);
   }
 
   presentLoading() {
+
+    this.loading = true;
+    this.http.request(global.host+'/images?userId='+global.userId)
+      .subscribe((res)=>{
+            this.data = res.json();
+            this.loading = false;
+    });
 
     let loader = this.loadingCtrl.create({
       content: "Please wait...",

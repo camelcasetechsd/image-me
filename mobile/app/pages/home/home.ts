@@ -17,7 +17,9 @@ export class HomePage {
 
 	  constructor(private navCtrl: NavController, private auth:	AuthService) {
 			this.storage = new Storage(SqlStorage);		  
+
 	  }
+
 
 	  onPageWillEnter(){
 	    	this.storage.get('name').then((name)=>{

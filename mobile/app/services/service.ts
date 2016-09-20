@@ -14,6 +14,7 @@ export class ImageService {
 
         var args = [
         global.userId,
+        //100,
         title,
         ]; 
 
@@ -43,9 +44,9 @@ export class ImageService {
             }            
     
             xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
+                if (xhr.readyState == 4) {                        
                     if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
+                        resolve(xhr.response);
                     } else {
                         reject(xhr.response);
                     }
