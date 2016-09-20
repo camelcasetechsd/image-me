@@ -62,7 +62,7 @@ export class GalleryPage {
 
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 1000
+      duration: 3000
     });
 
     loader.present();
